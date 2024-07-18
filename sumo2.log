@@ -1,0 +1,16 @@
+Loading net-file from 'D:\Saksham\SATS\intersection3.net.xml' ... done (6ms).
+Loading done.
+Simulation started with time: 0.00.
+Simulation ended at time: 500.00
+Reason: The final simulation step has been reached.
+Performance: 
+ Duration: 555.28s
+ Real time factor: 0.900447
+ UPS: 50.479038
+Vehicles: 
+ Inserted: 100
+ Running: 2
+ Waiting: 0
+
+DijkstraRouter answered 121 queries and explored 14.12 edges on average.
+DijkstraRouter spent 0.00s answering queries (0.02ms on average).
