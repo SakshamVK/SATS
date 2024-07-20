@@ -1,16 +1,22 @@
 import traci
 import pandas as pd
 
-# Start SUMO simulation
-sumoCmd = ["C:\\Sumo\\bin\\sumo", "-c", "D:\\Saksham\\signal syncronization\\configuration.sumo.cfg"]
-traci.start(sumoCmd)
+# Define the path to your SUMO executable and configuration file
+sumoCmd = [
+    "C:\\Sumo\\bin\\sumo",
+    "-c", "D:\\Saksham\\signal syncronization\\configuration.sumo.cfg"
+]
+
+# Start SUMO simulation with TraCI on the default port 8813
+traci.start(sumoCmd, port=8813)
 
 data = []
 
 step = 0
 while step < 50:
-    traci.simulationStep()
+    traci.simulationStep()  # Advance the simulation by one step
     
+    # Fetch data for each lane
     lane_ids = traci.lane.getIDList()  # Get all lane IDs
     for lane_id in lane_ids:
         car_count = traci.lane.getLastStepVehicleNumber(lane_id)
@@ -19,8 +25,9 @@ while step < 50:
     
     step += 1
 
+# Close TraCI connection
 traci.close()
 
 # Save data to a CSV file
 df = pd.DataFrame(data, columns=['step', 'lane_id', 'car_count', 'waiting_time'])
-df.to_csv('traffic_data.csv', index=False)
+df.to_csv('traffic_data2.csv', index=False)

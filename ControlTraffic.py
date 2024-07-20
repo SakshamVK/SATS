@@ -46,17 +46,17 @@ while step < 1000:
     # Collect data from SUMO
     current_data = get_traffic_data(lane_ids)
     traffic_data.append(current_data)
-    
+
     if len(traffic_data) >= look_back:
         # Make predictions using the ML model
         predictions = make_predictions(np.array(traffic_data[-look_back:]), scaler)
-        
+
         # Adjust traffic signals based on predictions
         for i, lane_id in enumerate(lane_ids):
             green_time = predictions[i][0]
             # Here, you would set the green light duration for the traffic light controlling this lane
             traci.trafficlight.setPhaseDuration('traffic_light_id', green_time)
-    
+
     step += 1
 
 traci.close()
